@@ -1,5 +1,17 @@
 #include <Windows.h>
 
+LRESULT CALLBACK GLWindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
+{
+	switch (msg)
+	{
+	case WM_CLOSE:
+		PostQuitMessage(0);
+		return 0;
+	}
+	return DefWindowProc(hwnd, msg, wParam, lParam);
+}
+
+// 程序的主入口
 // WINAPI	 函数的调用方式
 // 这些变量都是应用程序启动时，OS传入的
 // hInstance	 表示当前应用程序的实例
@@ -18,8 +30,8 @@ INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	wndClass.hIcon = NULL;
 	wndClass.hIconSm = NULL;
 	wndClass.hInstance = hInstance;
-	wndClass.lpfnWndProc = NULL;
-	wndClass.lpszClassName = "GLWindow";
+	wndClass.lpfnWndProc = GLWindowProc;
+	wndClass.lpszClassName = L"GLWindow";
 	wndClass.lpszMenuName = NULL;
 	wndClass.style = CS_VREDRAW | CS_HREDRAW;
 
@@ -27,7 +39,7 @@ INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	ATOM atom = RegisterClassEx(&wndClass);
 	if (!atom)
 	{
-		MessageBox(NULL, "Notice", "Error", MB_OK);
+		MessageBox(NULL, L"Notice", L"Error", MB_OK);
 		return 0;
 	}
 
