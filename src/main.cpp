@@ -44,8 +44,18 @@ INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		return 0;
 	}
 
+	// 调整视口的大小
+	RECT rect;
+	rect.left = 0;
+	rect.right = 800;
+	rect.top = 0;
+	rect.bottom = 600;
+	AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, NULL);
+	int windowWidth = rect.right - rect.left;
+	int windowHeight = rect.bottom - rect.top;
+
 	// 创建窗口
-	HWND hwnd = CreateWindowEx(NULL, L"GLWindow", L"OpenGL Window", WS_OVERLAPPEDWINDOW, 100, 100, 800, 600, NULL, NULL, hInstance, NULL);
+	HWND hwnd = CreateWindowEx(NULL, L"GLWindow", L"OpenGL Window", WS_OVERLAPPEDWINDOW, 100, 100, windowWidth, windowHeight, NULL, NULL, hInstance, NULL);
 	ShowWindow(hwnd, SW_SHOW);
 	// 更新窗口
 	UpdateWindow(hwnd);
