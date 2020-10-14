@@ -1,4 +1,6 @@
 #include <Windows.h>
+#include <gl/GL.h>
+#pragma comment(lib, "opengl32.lib")
 
 // 监听用户的操作
 LRESULT CALLBACK GLWindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
@@ -56,6 +58,24 @@ INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	// 创建窗口
 	HWND hwnd = CreateWindowEx(NULL, L"GLWindow", L"OpenGL Window", WS_OVERLAPPEDWINDOW, 100, 100, windowWidth, windowHeight, NULL, NULL, hInstance, NULL);
+	
+	HDC dc = GetDC(hwnd);
+	PIXELFORMATDESCRIPTOR pfd;
+	memset(&pfd, 0, sizeof(PIXELFORMATDESCRIPTOR));
+	pfd.nVersion = 1;
+	pfd.nSize = sizeof(PIXELFORMATDESCRIPTOR);
+	pfd.cColorBits = 32;
+	pfd.cDepthBits = 24;
+	pfd.cStencilBits = 8;
+	pfd.iPixelType = PFD_TYPE_RGBA;
+	pfd.dwFlags = PFD_DRAW_TO_WINDOW | PFD_SUPPORT_OPENGL | PFD_DOUBLEBUFFER;
+	int pixelFormat = ChoosePixelFormat(dc, &pfd);
+	SetPixelFormat(dc, pixelFormat, &pfd);
+
+	//创建上下文  并且设置上下文
+	HGLRC rc = wglCreateContext(dc);
+	wglMakeCurrent(dc, rc);
+
 	ShowWindow(hwnd, SW_SHOW);
 	// 更新窗口
 	UpdateWindow(hwnd);
