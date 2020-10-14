@@ -50,5 +50,24 @@ INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	// 更新窗口
 	UpdateWindow(hwnd);
 
+	// 显示窗口 （让程序一直运行） 
+	MSG msg;
+	while (true)
+	{
+		// 读取消息 ， 读取到消息之后，把当前消息从消息队列中移除掉
+		if (PeekMessage(&msg, NULL, NULL, NULL, PM_REMOVE))
+		{
+			// 当消息为推出消息的时候，就退出循环
+			if (msg.message == WM_QUIT)
+			{
+				break;
+			}
+			// 转换为应用程序可以识别的消息
+			TranslateMessage(&msg);
+			// 分发消息
+			DispatchMessage(&msg);
+		}
+	}
+
 	return 0;
 }
