@@ -1,6 +1,7 @@
-#include <Windows.h>
-#include <gl/GL.h>
+#include "ggl.h"
+#include "scene.h"
 #pragma comment(lib, "opengl32.lib")
+#pragma comment(lib, "glu32.lib")
 
 // 监听用户的操作
 LRESULT CALLBACK GLWindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
@@ -75,7 +76,8 @@ INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	//创建上下文  并且设置上下文
 	HGLRC rc = wglCreateContext(dc);
 	wglMakeCurrent(dc, rc);
-
+	// 场景初始化
+	Init();
 	ShowWindow(hwnd, SW_SHOW);
 	// 更新窗口
 	UpdateWindow(hwnd);
@@ -97,6 +99,10 @@ INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 			// 分发消息
 			DispatchMessage(&msg);
 		}
+		// 绘制
+		Draw();
+		// 绘制完成之后，交换缓冲区来显示绘制的结果
+		SwapBuffers(dc);
 	}
 
 	return 0;
