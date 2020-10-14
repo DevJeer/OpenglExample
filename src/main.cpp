@@ -1,5 +1,6 @@
 #include <Windows.h>
 
+// 监听用户的操作
 LRESULT CALLBACK GLWindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
 	switch (msg)
@@ -42,6 +43,12 @@ INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		MessageBox(NULL, L"Notice", L"Error", MB_OK);
 		return 0;
 	}
+
+	// 创建窗口
+	HWND hwnd = CreateWindowEx(NULL, L"GLWindow", L"OpenGL Window", WS_OVERLAPPEDWINDOW, 100, 100, 800, 600, NULL, NULL, hInstance, NULL);
+	ShowWindow(hwnd, SW_SHOW);
+	// 更新窗口
+	UpdateWindow(hwnd);
 
 	return 0;
 }
