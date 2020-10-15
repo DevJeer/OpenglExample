@@ -43,7 +43,7 @@ void Draw()
 	glEnd();*/
 
 	// 通过GL_TRIANGLE_FAN 来绘制三角形
-	glBegin(GL_TRIANGLE_FAN);
+	/*glBegin(GL_TRIANGLE_FAN);
 	
 	glColor4ub(255, 0, 0, 255);  glVertex3f(0.0f, -0.25f, -2.5f);
 	glColor4ub(0, 0, 255, 255);  glVertex3f(0.5f, -0.25f, -2.5f);
@@ -51,5 +51,13 @@ void Draw()
 	glColor4ub(0, 255, 0, 255);  glVertex3f(0.2f, 0.15f, -2.5f);
 	glColor4ub(0, 0, 255, 255);  glVertex3f(0.0f, 0.2f, -2.5f);
 
+	glEnd();*/
+
+	// 绘制点
+	glPointSize(10.0f);
+	glBegin(GL_POINTS);
+	glColor4ub(255, 0, 0, 255);  glVertex3f(-0.5f, -0.25f, -2.5f);
+	glColor4ub(0, 0, 255, 255);  glVertex3f(0.5f, -0.25f, -2.5f);
+	glColor4ub(0, 255, 0, 255);  glVertex3f(0.0f, 0.5f, -2.5f);
 	glEnd();
 }
