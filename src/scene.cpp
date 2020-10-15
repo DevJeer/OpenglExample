@@ -54,10 +54,21 @@ void Draw()
 	glEnd();*/
 
 	// 绘制点
-	glPointSize(10.0f);
+	/*glPointSize(10.0f);
 	glBegin(GL_POINTS);
 	glColor4ub(255, 0, 0, 255);  glVertex3f(-0.5f, -0.25f, -2.5f);
 	glColor4ub(0, 0, 255, 255);  glVertex3f(0.5f, -0.25f, -2.5f);
 	glColor4ub(0, 255, 0, 255);  glVertex3f(0.0f, 0.5f, -2.5f);
+	glEnd();*/
+
+	// 绘制线
+	glLineWidth(10.0f);
+	glBegin(GL_LINES);
+	
+	glColor4ub(255, 0, 0, 255);  glVertex3f(-0.5f, -0.25f, -2.5f);
+	glColor4ub(0, 0, 255, 255);  glVertex3f(0.5f, -0.25f, -2.5f);
+	glColor4ub(0, 0, 255, 255);  glVertex3f(0.5f, -0.25f, -2.5f);
+	glColor4ub(0, 255, 0, 255);  glVertex3f(1.0f, 0.5f, -2.5f);
+
 	glEnd();
 }
