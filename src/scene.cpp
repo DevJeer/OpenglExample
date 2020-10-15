@@ -11,5 +11,21 @@ void Init()
 
 void Draw()
 {
+	// 清除背景颜色
+	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT);
+
+	// 在glBegin 和 glEnd之间的顶点会被绘制
+	// 每三个点绘制
+	// 默认是以逆时针进行绘制的
+	glBegin(GL_TRIANGLES);
+	glColor4ub(255, 255, 255, 255);
+	glVertex3f(-0.2f, -0.2f, -1.5f);
 	
+	glColor4ub(255, 0, 0, 255);
+	glVertex3f(0.2f, -0.2f, -1.5f);
+
+	glColor4ub(0, 255, 0, 255);
+	glVertex3f(0.0f, 0.2f, -1.5f);
+	glEnd();
 }
