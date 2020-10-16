@@ -15,13 +15,15 @@ void Draw()
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
 
+#pragma region 绘制多个图形
+
 	// 在glBegin 和 glEnd之间的顶点会被绘制
 	// 每三个点绘制
 	// 默认是以逆时针进行绘制的
 	/*glBegin(GL_TRIANGLES);
 	glColor4ub(255, 255, 255, 255);
 	glVertex3f(-0.2f, -0.2f, -1.5f);
-	
+
 	glColor4ub(255, 0, 0, 255);
 	glVertex3f(0.2f, -0.2f, -1.5f);
 
@@ -44,7 +46,7 @@ void Draw()
 
 	// 通过GL_TRIANGLE_FAN 来绘制三角形
 	/*glBegin(GL_TRIANGLE_FAN);
-	
+
 	glColor4ub(255, 0, 0, 255);  glVertex3f(0.0f, -0.25f, -2.5f);
 	glColor4ub(0, 0, 255, 255);  glVertex3f(0.5f, -0.25f, -2.5f);
 	glColor4ub(0, 255, 0, 255);  glVertex3f(0.4f, 0.0f, -2.5f);
@@ -64,7 +66,7 @@ void Draw()
 	// 绘制线
 	/*glLineWidth(10.0f);
 	glBegin(GL_LINES);
-	
+
 	glColor4ub(255, 0, 0, 255);  glVertex3f(-0.5f, -0.25f, -2.5f);
 	glColor4ub(0, 0, 255, 255);  glVertex3f(0.5f, -0.25f, -2.5f);
 	glColor4ub(0, 0, 255, 255);  glVertex3f(0.5f, -0.25f, -2.5f);
@@ -114,11 +116,22 @@ void Draw()
 	glEnd();*/
 
 	// GL_POLYGON(绘制多边形)
-	glBegin(GL_POLYGON);
+	/*glBegin(GL_POLYGON);
 	glColor4ub(255, 0, 0, 255);  glVertex3f(-0.5f, -0.25f, -2.5f);
 	glColor4ub(0, 0, 255, 255);  glVertex3f(0.5f, -0.25f, -2.5f);
 	glColor4ub(0, 255, 0, 255);  glVertex3f(1.0f, 0.5f, -2.5f);
 	glColor4ub(255, 0, 0, 255);  glVertex3f(0.5f, 0.5f, -2.5f);
 	glColor4ub(0, 255, 0, 255);  glVertex3f(0.0f, 0.25f, -2.5f);
+	glEnd();*/
+
+#pragma endregion
+
+	// 给当前的矩阵里加载一个单位矩阵
+	glLoadIdentity();
+	glTranslatef(0.0f, 0.0f, -2.5f);
+	glBegin(GL_TRIANGLES);
+	glColor4ub(255, 0, 0, 255);  glVertex3f(-0.5f, -0.25f, 0.0f);
+	glColor4ub(0, 0, 255, 255);  glVertex3f(0.5f, -0.25f, 0.0f);
+	glColor4ub(0, 255, 0, 255);  glVertex3f(0.0f, 0.5f, 0.0f);
 	glEnd();
 }
