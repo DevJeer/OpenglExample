@@ -136,12 +136,22 @@ void Draw()
 	glEnd();*/
 
 	//旋转物体
+	//glLoadIdentity();
+	//// 绕z轴进行旋转
+	//glRotatef(30.0f, 0.0f, 0.0f, 1.0f);
+	//glBegin(GL_TRIANGLES);
+	//glColor4ub(255, 0, 0, 255);  glVertex3f(-0.5f, -0.25f, -2.5f);
+	//glColor4ub(0, 0, 255, 255);  glVertex3f(0.5f, -0.25f, -2.5f);
+	//glColor4ub(0, 255, 0, 255);  glVertex3f(0.0f, 0.5f, -2.5f);
+	//glEnd();
+
+	// 缩放物体
 	glLoadIdentity();
 	// 绕z轴进行旋转
-	glRotatef(30.0f, 0.0f, 0.0f, 1.0f);
+	glScalef(0.2f, 0.2f, 0.2f);
 	glBegin(GL_TRIANGLES);
-	glColor4ub(255, 0, 0, 255);  glVertex3f(-0.5f, -0.25f, -2.5f);
-	glColor4ub(0, 0, 255, 255);  glVertex3f(0.5f, -0.25f, -2.5f);
-	glColor4ub(0, 255, 0, 255);  glVertex3f(0.0f, 0.5f, -2.5f);
+	glColor4ub(255, 0, 0, 255);  glVertex3f(-0.5f, -0.25f, -5.0f);
+	glColor4ub(0, 0, 255, 255);  glVertex3f(0.5f, -0.25f, -5.0f);
+	glColor4ub(0, 255, 0, 255);  glVertex3f(0.0f, 0.5f, -5.0f);
 	glEnd();
 }
