@@ -125,13 +125,23 @@ void Draw()
 	glEnd();*/
 
 #pragma endregion
-
+	// 移动物体
 	// 给当前的矩阵里加载一个单位矩阵
-	glLoadIdentity();
+	/*glLoadIdentity();
 	glTranslatef(0.0f, 0.0f, -2.5f);
 	glBegin(GL_TRIANGLES);
 	glColor4ub(255, 0, 0, 255);  glVertex3f(-0.5f, -0.25f, 0.0f);
 	glColor4ub(0, 0, 255, 255);  glVertex3f(0.5f, -0.25f, 0.0f);
 	glColor4ub(0, 255, 0, 255);  glVertex3f(0.0f, 0.5f, 0.0f);
+	glEnd();*/
+
+	//旋转物体
+	glLoadIdentity();
+	// 绕z轴进行旋转
+	glRotatef(30.0f, 0.0f, 0.0f, 1.0f);
+	glBegin(GL_TRIANGLES);
+	glColor4ub(255, 0, 0, 255);  glVertex3f(-0.5f, -0.25f, -2.5f);
+	glColor4ub(0, 0, 255, 255);  glVertex3f(0.5f, -0.25f, -2.5f);
+	glColor4ub(0, 255, 0, 255);  glVertex3f(0.0f, 0.5f, -2.5f);
 	glEnd();
 }
