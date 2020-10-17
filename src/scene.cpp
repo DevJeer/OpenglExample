@@ -146,12 +146,32 @@ void Draw()
 	//glEnd();
 
 	// 缩放物体
+	//glLoadIdentity();
+	//// 绕z轴进行旋转
+	//glScalef(0.2f, 0.2f, 0.2f);
+	//glBegin(GL_TRIANGLES);
+	//glColor4ub(255, 0, 0, 255);  glVertex3f(-0.5f, -0.25f, -5.0f);
+	//glColor4ub(0, 0, 255, 255);  glVertex3f(0.5f, -0.25f, -5.0f);
+	//glColor4ub(0, 255, 0, 255);  glVertex3f(0.0f, 0.5f, -5.0f);
+	//glEnd();
+
+	// 矩阵的压栈和出栈
 	glLoadIdentity();
-	// 绕z轴进行旋转
-	glScalef(0.2f, 0.2f, 0.2f);
-	glBegin(GL_TRIANGLES);
-	glColor4ub(255, 0, 0, 255);  glVertex3f(-0.5f, -0.25f, -5.0f);
-	glColor4ub(0, 0, 255, 255);  glVertex3f(0.5f, -0.25f, -5.0f);
-	glColor4ub(0, 255, 0, 255);  glVertex3f(0.0f, 0.5f, -5.0f);
-	glEnd();
+	glPushMatrix();
+		glTranslatef(-1.0f, 0.0f, 0.0f);
+		glBegin(GL_TRIANGLES);
+		glColor4ub(255, 0, 0, 255);  glVertex3f(-0.5f, -0.25f, -5.0f);
+		glColor4ub(0, 0, 255, 255);  glVertex3f(0.5f, -0.25f, -5.0f);
+		glColor4ub(0, 255, 0, 255);  glVertex3f(0.0f, 0.5f, -5.0f);
+		glEnd();
+	glPopMatrix();
+	glPushMatrix();
+		glTranslatef(1.0f, 0.0f, 0.0f);
+		glBegin(GL_TRIANGLES);
+		glColor4ub(255, 0, 0, 255);  glVertex3f(-0.5f, -0.25f, -5.0f);
+		glColor4ub(0, 0, 255, 255);  glVertex3f(0.5f, -0.25f, -5.0f);
+		glColor4ub(0, 255, 0, 255);  glVertex3f(0.0f, 0.5f, -5.0f);
+		glEnd();
+	glPopMatrix();
+
 }
