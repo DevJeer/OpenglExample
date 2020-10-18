@@ -156,7 +156,7 @@ void Draw()
 	//glEnd();
 
 	// 矩阵的压栈和出栈
-	glLoadIdentity();
+	/*glLoadIdentity();
 	glPushMatrix();
 		glTranslatef(-1.0f, 0.0f, 0.0f);
 		glBegin(GL_TRIANGLES);
@@ -172,6 +172,31 @@ void Draw()
 		glColor4ub(0, 0, 255, 255);  glVertex3f(0.5f, -0.25f, -5.0f);
 		glColor4ub(0, 255, 0, 255);  glVertex3f(0.0f, 0.5f, -5.0f);
 		glEnd();
+	glPopMatrix();*/
+
+	// 复合运动
+	glLoadIdentity();
+	glPushMatrix();
+	glTranslatef(0.0f, 0.0f, -5.0f);
+		glPushMatrix();
+		glRotatef(30.0f, 0.0f, 1.0f, 0.0f);
+		glBegin(GL_TRIANGLES);
+		glColor4ub(255, 0, 0, 255);  glVertex3f(-0.5f, -0.25f, 0.0f);
+		glColor4ub(0, 0, 255, 255);  glVertex3f(0.5f, -0.25f, 0.0f);
+		glColor4ub(0, 255, 0, 255);  glVertex3f(0.0f, 0.5f, 0.0f);
+		glEnd();
+		glPopMatrix();
+	glPopMatrix();
+	glPushMatrix();
+	glRotatef(30.0f, 0.0f, 1.0f, 0.0f);
+		glPushMatrix();
+		glTranslatef(0.0f, 0.0f, -5.0f);
+		glBegin(GL_TRIANGLES);
+		glColor4ub(255, 0, 0, 255);  glVertex3f(-0.5f, -0.25f, 0.0f);
+		glColor4ub(0, 0, 255, 255);  glVertex3f(0.5f, -0.25f, 0.0f);
+		glColor4ub(0, 255, 0, 255);  glVertex3f(0.0f, 0.5f, 0.0f);
+		glEnd();
+		glPopMatrix();
 	glPopMatrix();
 
 }
