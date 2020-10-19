@@ -9,6 +9,18 @@ void Init()
 	glLoadIdentity();
 }
 
+// 绘制物体平面
+void DrawModel()
+{
+	glBegin(GL_QUADS);
+	glColor4ub(255, 255, 255, 255);
+	glVertex3f(-0.5f, -0.2f, -0.5f);
+	glVertex3f(0.5f, -0.2f, -0.5f);
+	glVertex3f(0.5f, -0.2f, -1.0f);
+	glVertex3f(-0.5f, -0.2f, -1.0f);
+	glEnd();
+}
+
 void Draw()
 {
 	// 清除背景颜色
@@ -175,7 +187,7 @@ void Draw()
 	glPopMatrix();*/
 
 	// 复合运动
-	glLoadIdentity();
+	/*glLoadIdentity();
 	glPushMatrix();
 	glTranslatef(0.0f, 0.0f, -5.0f);
 		glPushMatrix();
@@ -197,6 +209,19 @@ void Draw()
 		glColor4ub(0, 255, 0, 255);  glVertex3f(0.0f, 0.5f, 0.0f);
 		glEnd();
 		glPopMatrix();
-	glPopMatrix();
+	glPopMatrix();*/
 
+	// 放置摄像机的位置  这段代码必须在绘制其他物体之前
+	//         摄像机的位置   眼睛看的视点（是一个点） 从头顶发出去的方向向量
+	//gluLookAt(0.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1.0f, 0.0f, 1.0f, 0.0f);
+
+	// 启用光照
+	glEnable(GL_LIGHTING);
+	// 启用光照0
+	glEnable(GL_LIGHT0);
+	float lightPos[] = { 0.0f, 1.0f, 0.0f, 0.0f };
+	// 光照0是方向光，因为lightPos代表的是一个齐次坐标，齐次坐标实际的位置就是 x / w  y / w  z/ w
+	glLightfv(GL_LIGHT0, GL_POSITION, lightPos);
+
+	DrawModel();
 }
