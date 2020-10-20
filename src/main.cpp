@@ -1,7 +1,40 @@
 #include "ggl.h"
 #include "scene.h"
+#include "utils.h"
 #pragma comment(lib, "opengl32.lib")
 #pragma comment(lib, "glu32.lib")
+
+// 读取图片
+unsigned char* LoadFileContent(const char* path, int& filesize)
+{
+	unsigned char* fileContent = nullptr;
+	filesize = 0;
+	// 打开文件，以read binary的方式打开
+	// pFile是stream
+	FILE* pFile = fopen(path, "rb");
+	if (pFile)
+	{
+		// stream指针移动到文件尾部，准备获取文件的大小
+		fseek(pFile, 0, SEEK_END);
+		// 获取文件的大小
+		int nLen = ftell(pFile);
+		if (nLen > 0)
+		{
+			// 将stream指针移动到文件的头部
+			rewind(pFile);
+			// 为buffer开辟缓冲区
+			fileContent = new unsigned char[nLen + 1];
+			// 将信息读取到buffer中
+			fread(fileContent, sizeof(unsigned char), nLen, pFile);
+			// 在将文件的尾部加上 \0
+			fileContent[nLen] = '\0';
+			// 获取文件的长度
+			filesize = nLen;
+		}
+		fclose(pFile);
+	}
+	return fileContent;
+}
 
 // 监听用户的操作
 LRESULT CALLBACK GLWindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
@@ -59,7 +92,7 @@ INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	// 创建窗口
 	HWND hwnd = CreateWindowEx(NULL, L"GLWindow", L"OpenGL Window", WS_OVERLAPPEDWINDOW, 100, 100, windowWidth, windowHeight, NULL, NULL, hInstance, NULL);
-	
+
 	HDC dc = GetDC(hwnd);
 	PIXELFORMATDESCRIPTOR pfd;
 	memset(&pfd, 0, sizeof(PIXELFORMATDESCRIPTOR));
