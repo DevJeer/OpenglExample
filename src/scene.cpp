@@ -222,6 +222,23 @@ void Draw()
 	float lightPos[] = { 0.0f, 1.0f, 0.0f, 0.0f };
 	// 光照0是方向光，因为lightPos代表的是一个齐次坐标，齐次坐标实际的位置就是 x / w  y / w  z/ w
 	glLightfv(GL_LIGHT0, GL_POSITION, lightPos);
+	// 添加环境光，反射系数
+	float whiteColor[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+	float ambientMat[] = { 0.07f, 0.07f, 0.07f, 1.0f };
+	// 漫反射的系数
+	float diffuseMat[] = { 0.4f, 0.4f, 0.4f, 1.0f };
+	// 镜面反射的系数
+	float specularMat[] = { 0.9f, 0.9f, 0.9f, 1.0f };
+	glLightfv(GL_LIGHT0, GL_AMBIENT, whiteColor);
+	glMaterialfv(GL_LIGHT0, GL_AMBIENT, ambientMat);
+
+	glLightfv(GL_LIGHT0, GL_DIFFUSE, whiteColor);
+	glMaterialfv(GL_LIGHT0, GL_DIFFUSE, diffuseMat);
+
+	glLightfv(GL_LIGHT0, GL_SPECULAR, whiteColor);
+	glMaterialfv(GL_LIGHT0, GL_SPECULAR, specularMat);
+
+
 
 	DrawModel();
 }
