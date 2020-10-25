@@ -44,6 +44,7 @@ void SkyBox::Init(const char *imageDir)
 
 }
 
+// 绘制天空盒
 void SkyBox::Draw()
 {
 	// 关闭深度测试，让opengl认为天空盒在无限远的地方
