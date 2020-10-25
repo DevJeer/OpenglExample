@@ -9,3 +9,6 @@ unsigned char* DecodeBMP(unsigned char* bmpFileData, int& width, int& height);
 
 // 创建2D纹理
 GLuint CreateTexture2D(unsigned char* pixelData, int width, int height, GLenum type);
+
+// 从BMP文件中创建2D纹理
+GLuint CreateTexture2DFromBMP(const char *bmpPath);

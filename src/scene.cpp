@@ -11,14 +11,18 @@ void Init()
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 
-	int nFileSize = 0;
-	// 加载图片的内容
-	unsigned char* bmpFileContent = LoadFileContent("Res/test.bmp", nFileSize);
-	int bmpWidth = 0, bmpHeight = 0;
-	// 解码BMP
-	unsigned char* pixelData = DecodeBMP(bmpFileContent, bmpWidth, bmpHeight);
-	// 创建纹理对象
-	texture = CreateTexture2D(pixelData, bmpWidth, bmpHeight, GL_RGB);
+	//int nFileSize = 0;
+	//// 加载图片的内容
+	//unsigned char* bmpFileContent = LoadFileContent("Res/test.bmp", nFileSize);
+	//int bmpWidth = 0, bmpHeight = 0;
+	//// 解码BMP
+	//unsigned char* pixelData = DecodeBMP(bmpFileContent, bmpWidth, bmpHeight);
+	//// 创建纹理对象
+	//texture = CreateTexture2D(pixelData, bmpWidth, bmpHeight, GL_RGB);
+
+	// 整合创建纹理的方法
+	texture = CreateTexture2DFromBMP("Res/test.bmp");
+
 }
 
 // 绘制物体平面
@@ -59,31 +63,8 @@ void EnableLight()
 	glMaterialfv(GL_LIGHT0, GL_SPECULAR, specularMat);
 }
 
-void glClampTestCode()
+void PoloygonTest()
 {
-	glBegin(GL_QUADS);
-	glColor4ub(255, 255, 255, 255);
-	// 纹理坐标1  逆时针
-	glTexCoord2f(0.0f, 0.0f);
-	glVertex3f(-0.1f, -0.1f, -0.4f);
-
-	glTexCoord2f(2.0f, 0.0f);
-	glVertex3f(0.1f, -0.1f, -0.4f);
-
-	glTexCoord2f(2.0f, 2.0f);
-	glVertex3f(0.1f, 0.1f, -0.4f);
-
-	glTexCoord2f(0.0f, 2.0f);
-	glVertex3f(-0.1f, 0.1f, -0.4f);
-	glEnd();
-}
-
-void Draw()
-{
-	// 清除背景颜色
-	glClearColor(0.1f, 0.4f, 0.6f, 1.0f);
-	glClear(GL_COLOR_BUFFER_BIT);
-
 #pragma region 绘制多个图形
 
 	// 在glBegin 和 glEnd之间的顶点会被绘制
@@ -203,7 +184,10 @@ void Draw()
 	glColor4ub(0, 0, 255, 255);  glVertex3f(0.5f, -0.25f, 0.0f);
 	glColor4ub(0, 255, 0, 255);  glVertex3f(0.0f, 0.5f, 0.0f);
 	glEnd();*/
+}
 
+void MoveTest()
+{
 	//旋转物体
 	//glLoadIdentity();
 	//// 绕z轴进行旋转
@@ -273,7 +257,30 @@ void Draw()
 	//gluLookAt(0.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1.0f, 0.0f, 1.0f, 0.0f);
 
 	//DrawModel();
+}
 
+// 测试纹理采样的方法
+void glClampTestCode(float sliceNum)
+{
+	glBegin(GL_QUADS);
+	glColor4ub(255, 255, 255, 255);
+	// 纹理坐标1  逆时针
+	glTexCoord2f(0.0f, 0.0f);
+	glVertex3f(-0.1f, -0.1f, -0.4f);
+
+	glTexCoord2f(sliceNum, 0.0f);
+	glVertex3f(0.1f, -0.1f, -0.4f);
+
+	glTexCoord2f(sliceNum, sliceNum);
+	glVertex3f(0.1f, 0.1f, -0.4f);
+
+	glTexCoord2f(0.0f, sliceNum);
+	glVertex3f(-0.1f, 0.1f, -0.4f);
+	glEnd();
+}
+
+void TextureTest()
+{
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, texture);
 	//glBegin(GL_QUADS);
@@ -292,5 +299,15 @@ void Draw()
 	//glVertex3f(-0.1f, 0.1f, -0.4f);
 	//glEnd();
 
-	glClampTestCode();
+	glClampTestCode(1.0f);
+}
+
+void Draw()
+{
+	// 清除背景颜色
+	glClearColor(0.1f, 0.4f, 0.6f, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT);
+	
+
+	
 }
