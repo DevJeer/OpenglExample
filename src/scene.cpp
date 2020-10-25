@@ -21,7 +21,7 @@ void Init()
 	//texture = CreateTexture2D(pixelData, bmpWidth, bmpHeight, GL_RGB);
 
 	// 整合创建纹理的方法
-	texture = CreateTexture2DFromBMP("Res/test.bmp");
+	//texture = CreateTexture2DFromBMP("Res/test.bmp");
 
 }
 
@@ -306,8 +306,22 @@ void Draw()
 {
 	// 清除背景颜色
 	glClearColor(0.1f, 0.4f, 0.6f, 1.0f);
-	glClear(GL_COLOR_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	// 启用深度测试
+	glEnable(GL_DEPTH_TEST);
 	
+	glBegin(GL_QUADS);
+	glColor4ub(200, 50, 0, 255);
+	glVertex3f(-0.1f, -0.1f, -0.4f);
+	glVertex3f(0.1f, -0.1f, -0.4f);
+	glVertex3f(0.1f, 0.1f, -0.4f);
+	glVertex3f(-0.1f, 0.1f, -0.4f);
 
+	glColor4ub(0, 50, 200, 255);
+	glVertex3f(-0.1f, -0.1f, -0.6f);
+	glVertex3f(0.1f, -0.1f, -0.6f);
+	glVertex3f(0.1f, 0.1f, -0.6f);
+	glVertex3f(-0.1f, 0.1f, -0.6f);
+	glEnd();
 	
 }
