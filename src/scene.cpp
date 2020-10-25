@@ -1,7 +1,9 @@
 #include "scene.h"
 #include "utils.h"
+#include "skybox.h"
 
 GLuint texture;
+SkyBox skybox;
 void Init()
 {
 	// 设置当前投影矩阵的
@@ -10,6 +12,9 @@ void Init()
 	// 设置当前模型视口矩阵
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
+
+	// 初始化天空盒
+	skybox.Init("Res/");
 
 	//int nFileSize = 0;
 	//// 加载图片的内容
@@ -307,15 +312,17 @@ void Draw()
 	// 清除背景颜色
 	glClearColor(0.1f, 0.4f, 0.6f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	// 绘制天空盒
+	skybox.Draw();
 	// 启用深度测试
 	glEnable(GL_DEPTH_TEST);
 	
 	glBegin(GL_QUADS);
-	glColor4ub(200, 50, 0, 255);
+	/*glColor4ub(200, 50, 0, 255);
 	glVertex3f(-0.1f, -0.1f, -0.4f);
 	glVertex3f(0.1f, -0.1f, -0.4f);
 	glVertex3f(0.1f, 0.1f, -0.4f);
-	glVertex3f(-0.1f, 0.1f, -0.4f);
+	glVertex3f(-0.1f, 0.1f, -0.4f);*/
 
 	glColor4ub(0, 50, 200, 255);
 	glVertex3f(-0.1f, -0.1f, -0.6f);
