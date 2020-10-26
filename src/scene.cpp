@@ -18,7 +18,10 @@ void Init()
 	// 初始化天空盒
 	skybox.Init("Res/");
 	// 初始化模型
-	model.Init("Res/Quad.obj");
+	//model.Init("Res/Quad.obj");
+	model.Init("Res/Sphere.obj");
+	// 加载纹理资源
+	model.mTexture = CreateTexture2DFromBMP("Res/earth.bmp");
 
 	//int nFileSize = 0;
 	//// 加载图片的内容

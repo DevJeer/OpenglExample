@@ -148,8 +148,12 @@ void Model::Init(const char *modelPath)
 // »æÖÆÄ£ÐÍ
 void Model::Draw()
 {
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, mTexture);
+	glEnable(GL_DEPTH_TEST);
+
 	glPushMatrix();
-	glTranslatef(0.0f, 0.0f, -2.0f);
+	glTranslatef(0.0f, 0.0f, -5.0f);
 	glBegin(GL_TRIANGLES);
 	for (int i = 0; i < mIndexCount; ++i)
 	{

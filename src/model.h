@@ -17,6 +17,8 @@ private:
 	int mIndexCount;
 
 public:
+	GLuint mTexture;
+
 	Model();
 	void Init(const char *modelPath);
 
