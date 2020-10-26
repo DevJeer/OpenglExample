@@ -122,5 +122,23 @@ void Model::Init(const char *modelPath)
 			}
 		}
 	}
+
+	mIndexCount = (int)indexes.size();
+	// 填充索引
+	mIndexes = new unsigned short[mIndexCount];
+	for (int i = 0; i < mIndexCount; i++)
+	{
+		mIndexes[i] = indexes[i];
+	}
+	int vertexCount = (int)vertexes.size();
+	mVertexes = new VertexData[vertexCount];
+	for (int i = 0; i < vertexCount; ++i)
+	{
+		// 根据索引来找到顶点 / 纹理 / 法线
+		memcpy(mVertexes[i].position, positions[vertexes[i].posIndex - 1].v, sizeof(float) * 3);
+		memcpy(mVertexes[i].texcoord, texcoords[vertexes[i].texcoordIndex - 1].v, sizeof(float) * 2);
+		memcpy(mVertexes[i].normal, normals[vertexes[i].normalIndex - 1].v, sizeof(float) * 3);
+	}
+
 	delete fileContent;
 }
