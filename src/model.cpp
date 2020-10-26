@@ -62,6 +62,7 @@ void Model::Init(const char *modelPath)
 					ssOneLine >> floatData.v[0];
 					ssOneLine >> floatData.v[1];
 					ssOneLine >> floatData.v[2];
+					normals.push_back(floatData);
 					printf("normal : %f, %f, %f\n", floatData.v[0], floatData.v[1], floatData.v[2]);
 				}
 				else {
@@ -71,6 +72,7 @@ void Model::Init(const char *modelPath)
 					ssOneLine >> floatData.v[0];
 					ssOneLine >> floatData.v[1];
 					ssOneLine >> floatData.v[2];
+					positions.push_back(floatData);
 					printf("position : %f, %f, %f\n", floatData.v[0], floatData.v[1], floatData.v[2]);
 				}
 			}// face
@@ -141,4 +143,20 @@ void Model::Init(const char *modelPath)
 	}
 
 	delete fileContent;
+}
+
+// »æÖÆÄ£ÐÍ
+void Model::Draw()
+{
+	glPushMatrix();
+	glTranslatef(0.0f, 0.0f, -2.0f);
+	glBegin(GL_TRIANGLES);
+	for (int i = 0; i < mIndexCount; ++i)
+	{
+		glTexCoord2fv(mVertexes[mIndexes[i]].texcoord);
+		glNormal3fv(mVertexes[mIndexes[i]].normal);
+		glVertex3fv(mVertexes[mIndexes[i]].position);
+	}
+	glEnd();
+	glPopMatrix();
 }

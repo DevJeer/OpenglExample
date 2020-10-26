@@ -19,4 +19,6 @@ private:
 public:
 	Model();
 	void Init(const char *modelPath);
+
+	void Draw();
 };

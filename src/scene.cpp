@@ -311,16 +311,11 @@ void TextureTest()
 	glClampTestCode(1.0f);
 }
 
-void Draw()
+void SkyBoxTest()
 {
-	// 清除背景颜色
-	glClearColor(0.1f, 0.4f, 0.6f, 1.0f);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	// 绘制天空盒
-	skybox.Draw();
 	// 启用深度测试
 	glEnable(GL_DEPTH_TEST);
-	
+
 	glBegin(GL_QUADS);
 	/*glColor4ub(200, 50, 0, 255);
 	glVertex3f(-0.1f, -0.1f, -0.4f);
@@ -334,5 +329,17 @@ void Draw()
 	glVertex3f(0.1f, 0.1f, -0.6f);
 	glVertex3f(-0.1f, 0.1f, -0.6f);
 	glEnd();
+}
+
+void Draw()
+{
+	// 清除背景颜色
+	glClearColor(0.1f, 0.4f, 0.6f, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	// 绘制天空盒
+	skybox.Draw();
+	// 绘制模型
+	model.Draw();
 	
+
 }
