@@ -42,10 +42,13 @@ void SkyBox::Init(const char *imageDir)
 	strcat(temp, "bottom.bmp");
 	mTextures[5] = CreateTexture2DFromBMP(temp);
 
+	mFastDrawCall = CreateDisplayList([this]() -> void {
+		DrawCommand();
+	});
 }
 
 // 绘制天空盒
-void SkyBox::Draw()
+void SkyBox::DrawCommand()
 {
 	// 关闭深度测试，让opengl认为天空盒在无限远的地方
 	glDisable(GL_DEPTH_TEST);
@@ -129,4 +132,9 @@ void SkyBox::Draw()
 	glTexCoord2f(0.0f, 1.0f);
 	glVertex3f(-0.5f, -0.5f, -0.5f);
 	glEnd();
+}
+
+void SkyBox::Draw()
+{
+	glCallList(mFastDrawCall);
 }

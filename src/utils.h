@@ -12,3 +12,6 @@ GLuint CreateTexture2D(unsigned char* pixelData, int width, int height, GLenum t
 
 // 从BMP文件中创建2D纹理
 GLuint CreateTexture2DFromBMP(const char *bmpPath);
+
+// 创建显式列表
+GLuint CreateDisplayList(std::function<void()> foo);

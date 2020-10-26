@@ -65,3 +65,13 @@ GLuint CreateTexture2DFromBMP(const char *bmpPath)
 	delete bmpFileContent;
 	return texture;
 }
+
+// 创建显式列表
+GLuint CreateDisplayList(std::function<void()> foo)
+{
+	GLuint displayList = glGenLists(1);
+	glNewList(displayList, GL_COMPILE);
+	foo();
+	glEndList();
+	return displayList;
+}
