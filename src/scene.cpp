@@ -1,9 +1,11 @@
 #include "scene.h"
 #include "utils.h"
 #include "skybox.h"
+#include "model.h"
 
 GLuint texture;
 SkyBox skybox;
+Model model;
 void Init()
 {
 	// 设置当前投影矩阵的
@@ -15,6 +17,8 @@ void Init()
 
 	// 初始化天空盒
 	skybox.Init("Res/");
+	// 初始化模型
+	model.Init("Res/Quad.obj");
 
 	//int nFileSize = 0;
 	//// 加载图片的内容
