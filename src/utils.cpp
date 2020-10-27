@@ -28,19 +28,21 @@ GLuint CreateTexture2D(unsigned char* pixelData, int width, int height, GLenum t
 	GLuint texture;
 	// 在gpu中申请一片内存空间
 	glGenTextures(1, &texture);
+	// 设置成为当前处理的纹理
 	glBindTexture(GL_TEXTURE_2D, texture);
 	// 设置纹理过大/过小的处理方式
-	/*glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);*/
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-	// 设置uv坐标的方式（图片过大/过小）
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	/*glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);*/
+	// 设置纹理uv坐标的方式（图片过大/过小）
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
 	/*glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);*/
 	// 写到gpu中
 	glTexImage2D(GL_TEXTURE_2D, 0, type, width, height, 0, type, GL_UNSIGNED_BYTE, pixelData);
+	// 将加载之后的纹理绑定到1号位置
 	glBindTexture(GL_TEXTURE_2D, 0);
 	return texture;
 }
@@ -61,6 +63,7 @@ GLuint CreateTexture2DFromBMP(const char *bmpPath)
 		delete bmpFileContent;
 		return 0;
 	}
+	// 创建纹理对象
 	GLuint texture = CreateTexture2D(pixelData, bmpWidth, bmpHeight, GL_RGB);
 	delete bmpFileContent;
 	return texture;
