@@ -2,10 +2,12 @@
 #include "utils.h"
 #include "skybox.h"
 #include "model.h"
+#include "ground.h"
 
 GLuint texture;
 SkyBox skybox;
 Model model;
+Ground ground;
 void Init()
 {
 	// 设置当前投影矩阵的
@@ -343,6 +345,7 @@ void Draw()
 	skybox.Draw();
 	// 绘制模型
 	model.Draw();
-	
+	// 绘制地面
+	ground.Draw();
 
 }
