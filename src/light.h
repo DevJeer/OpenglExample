@@ -33,3 +33,11 @@ public:
 	void SetLinearAttenuation(float v);
 	void SetQuadricAttenuation(float v);
 };
+
+class SpotLight : public PointLight {
+public:
+	SpotLight(GLenum light);
+	void SetDirection(float x, float y, float z);
+	void SetExponent(float v);
+	void SetCutOff(float v);
+};

@@ -68,3 +68,24 @@ void PointLight::SetQuadricAttenuation(float v)
 {
 	glLightf(mLightIdentifier, GL_QUADRATIC_ATTENUATION, v);
 }
+// 直接调用父类的构造函数
+SpotLight::SpotLight(GLenum light) : PointLight(light)
+{
+
+}
+// 设置聚光灯的朝向
+void SpotLight::SetDirection(float x, float y, float z)
+{
+	float dir[] = { x, y, z };
+	glLightfv(mLightIdentifier, GL_SPOT_DIRECTION, dir);
+}
+// 设置聚光灯在哪一个范围内是不衰减的
+void SpotLight::SetExponent(float v)
+{
+	glLightf(mLightIdentifier, GL_SPOT_EXPONENT, v);
+}
+// 设置聚光灯的照射范围
+void SpotLight::SetCutOff(float v)
+{
+	glLightf(mLightIdentifier, GL_SPOT_CUTOFF, v);
+}

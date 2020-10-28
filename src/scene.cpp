@@ -11,6 +11,7 @@ Model model;
 Ground ground;
 DirectionLight light(GL_LIGHT0);
 PointLight light1(GL_LIGHT1), light2(GL_LIGHT2);
+SpotLight light3(GL_LIGHT3);
 void Init()
 {
 	// 设置当前投影矩阵的
@@ -48,6 +49,15 @@ void Init()
 	light2.SetPosition(0.0f, 0.0f, -10.0f);
 	light2.SetConstAttenuation(1.0f);
 	light2.SetLinearAttenuation(0.2f);
+
+	// 设置聚光灯
+	light3.SetAmbientColor(0.1f, 0.1f, 0.1f, 1.0f);
+	light3.SetDiffuseColor(0.0f, 0.8f, 0.0f, 1.0f);
+	light3.SetSpecularColor(1.0f, 0.0f, 0.0f, 1.0f);
+	light3.SetPosition(5.0f, 30.0f, -10.0f);
+	light3.SetDirection(0.0f, -1.0f, 0.0f);
+	light3.SetExponent(5.0f);
+	light3.SetCutOff(5.0f);
 
 	// 设置模型的材质
 	model.SetAmbientMaterial(0.1f, 0.1f, 0.1f, 1.0f);
@@ -376,8 +386,11 @@ void Draw()
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	//light.Enable();
+	// 启用点光源
 	light1.Enable();
 	light2.Enable();
+	// 启用聚光灯
+	light3.Enable();
 	// 绘制天空盒
 	//skybox.Draw();
 	// 绘制模型
