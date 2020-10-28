@@ -3,7 +3,9 @@
 
 Model::Model()
 {
-
+	memset(mAmbientMaterial, 0, sizeof(mAmbientMaterial));
+	memset(mDiffuseMaterial, 0, sizeof(mDiffuseMaterial));
+	memset(mSpecularMaterial, 0, sizeof(mSpecularMaterial));
 }
 
 void Model::Init(const char *modelPath)
@@ -148,6 +150,13 @@ void Model::Init(const char *modelPath)
 // 绘制模型
 void Model::Draw()
 {
+	// 物体要受到光照的影响，就得开启光照
+	glEnable(GL_LIGHTING);
+	// 设置物体的材质
+	glMaterialfv(GL_FRONT, GL_AMBIENT, mAmbientMaterial);
+	glMaterialfv(GL_FRONT, GL_DIFFUSE, mDiffuseMaterial);
+	glMaterialfv(GL_FRONT, GL_SPECULAR, mSpecularMaterial);
+
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, mTexture);
 	glEnable(GL_DEPTH_TEST);
@@ -163,4 +172,28 @@ void Model::Draw()
 	}
 	glEnd();
 	glPopMatrix();
+}
+// 设置环境光的材质
+void Model::SetAmbientMaterial(float r, float g, float b, float a)
+{
+	mAmbientMaterial[0] = r;
+	mAmbientMaterial[1] = g;
+	mAmbientMaterial[2] = b;
+	mAmbientMaterial[3] = a;
+}
+// 设置漫反射的材质
+void Model::SetDiffuseMaterial(float r, float g, float b, float a)
+{
+	mDiffuseMaterial[0] = r;
+	mDiffuseMaterial[1] = g;
+	mDiffuseMaterial[2] = b;
+	mDiffuseMaterial[3] = a;
+}
+// 设置镜面反射的材质
+void Model::SetSpecularMaterial(float r, float g, float b, float a)
+{
+	mSpecularMaterial[0] = r;
+	mSpecularMaterial[1] = g;
+	mSpecularMaterial[2] = b;
+	mSpecularMaterial[3] = a;
 }

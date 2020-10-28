@@ -16,6 +16,8 @@ private:
 	unsigned short *mIndexes;
 	int mIndexCount;
 
+	float mAmbientMaterial[4], mDiffuseMaterial[4], mSpecularMaterial[4];
+
 public:
 	GLuint mTexture;
 
@@ -23,4 +25,8 @@ public:
 	void Init(const char *modelPath);
 
 	void Draw();
+
+	void SetAmbientMaterial(float r, float g, float b, float a);
+	void SetDiffuseMaterial(float r, float g, float b, float a);
+	void SetSpecularMaterial(float r, float g, float b, float a);
 };

@@ -31,6 +31,10 @@ void Init()
 	light.SetDiffuseColor(0.8f, 0.8f, 0.8f, 1.0f);
 	light.SetSpecularColor(1.0f, 1.0f, 1.0f, 1.0f);
 	light.SetPosition(0.0f, 1.0f, 0.0f);
+	// 设置模型的材质
+	model.SetAmbientMaterial(0.1f, 0.1f, 0.1f, 1.0f);
+	model.SetDiffuseMaterial(0.4f, 0.4f, 0.4f, 1.0f);
+	model.SetSpecularMaterial(1.0f, 1.0f, 1.0f, 1.0f);
 
 	//int nFileSize = 0;
 	//// 加载图片的内容
