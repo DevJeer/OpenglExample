@@ -36,6 +36,11 @@ void Init()
 	model.SetDiffuseMaterial(0.4f, 0.4f, 0.4f, 1.0f);
 	model.SetSpecularMaterial(1.0f, 1.0f, 1.0f, 1.0f);
 
+	// 设置地面的材质
+	ground.SetAmbientMaterial(0.1f, 0.1f, 0.1f, 1.0f);
+	ground.SetDiffuseMaterial(0.4f, 0.4f, 0.4f, 1.0f);
+	ground.SetSpecularMaterial(0.0f, 0.0f, 0.0f, 1.0f);
+
 	//int nFileSize = 0;
 	//// 加载图片的内容
 	//unsigned char* bmpFileContent = LoadFileContent("Res/test.bmp", nFileSize);

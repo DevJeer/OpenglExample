@@ -3,6 +3,14 @@
 // 绘制地面
 void Ground::Draw()
 {
+	glEnable(GL_LIGHTING);
+	// 设置材质
+	glMaterialfv(GL_FRONT, GL_AMBIENT, mAmbientMaterial);
+	glMaterialfv(GL_FRONT, GL_DIFFUSE, mDiffuseMaterial);
+	glMaterialfv(GL_FRONT, GL_SPECULAR, mSpecularMaterial);
+	// 因为地面是没有材质的，所以我们在给地面应用光照的时候，要启用颜色追踪
+	glEnable(GL_COLOR_MATERIAL);
+
 	glEnable(GL_DEPTH_TEST);
 	glDisable(GL_TEXTURE_2D);
 	glBegin(GL_QUADS);
@@ -32,4 +40,28 @@ void Ground::Draw()
 	}
 
 	glEnd();
+}
+
+void Ground::SetAmbientMaterial(float r, float g, float b, float a)
+{
+	mAmbientMaterial[0] = r;
+	mAmbientMaterial[1] = g;
+	mAmbientMaterial[2] = b;
+	mAmbientMaterial[3] = a;
+}
+
+void Ground::SetDiffuseMaterial(float r, float g, float b, float a)
+{
+	mDiffuseMaterial[0] = r;
+	mDiffuseMaterial[1] = g;
+	mDiffuseMaterial[2] = b;
+	mDiffuseMaterial[3] = a;
+}
+
+void Ground::SetSpecularMaterial(float r, float g, float b, float a)
+{
+	mSpecularMaterial[0] = r;
+	mSpecularMaterial[1] = g;
+	mSpecularMaterial[2] = b;
+	mSpecularMaterial[3] = a;
 }
