@@ -17,3 +17,10 @@ public:
 	// ¿ªÆôµÆ¹â
 	void Enable();
 };
+
+class DirectionLight : public Light {
+public:
+	DirectionLight(GLenum light);
+
+	void SetPosition(float x, float y, float z);
+};

@@ -128,6 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\ground.cpp" />
+    <ClCompile Include="src\light.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\model.cpp" />
     <ClCompile Include="src\scene.cpp" />
@@ -137,6 +138,7 @@
   <ItemGroup>
     <ClInclude Include="src\ggl.h" />
     <ClInclude Include="src\ground.h" />
+    <ClInclude Include="src\light.h" />
     <ClInclude Include="src\model.h" />
     <ClInclude Include="src\scene.h" />
     <ClInclude Include="src\skybox.h" />

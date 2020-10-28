@@ -52,6 +52,8 @@ void SkyBox::DrawCommand()
 {
 	// 关闭深度测试，让opengl认为天空盒在无限远的地方
 	glDisable(GL_DEPTH_TEST);
+	// 让天空盒不受灯光的影响
+	glDisable(GL_LIGHTING);
 
 	glEnable(GL_TEXTURE_2D);
 	// front

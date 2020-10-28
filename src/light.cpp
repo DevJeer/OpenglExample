@@ -30,3 +30,15 @@ void Light::Enable()
 	// 开启指定的一盏灯
 	glEnable(mLightIdentifier);
 }
+
+
+DirectionLight::DirectionLight(GLenum light)
+{
+	mLightIdentifier = light;
+}
+// 设置直射光的位置
+void DirectionLight::SetPosition(float x, float y, float z)
+{
+	float position[] = { x, y, z, 0.0f };
+	glLightfv(mLightIdentifier, GL_POSITION, position);
+}

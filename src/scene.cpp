@@ -3,11 +3,13 @@
 #include "skybox.h"
 #include "model.h"
 #include "ground.h"
+#include "light.h"
 
 GLuint texture;
 SkyBox skybox;
 Model model;
 Ground ground;
+DirectionLight light(GL_LIGHT0);
 void Init()
 {
 	// 设置当前投影矩阵的
@@ -24,6 +26,11 @@ void Init()
 	model.Init("Res/Sphere.obj");
 	// 加载纹理资源
 	model.mTexture = CreateTexture2DFromBMP("Res/earth.bmp");
+
+	light.SetAmbientColor(0.1f, 0.1f, 0.1f, 1.0f);
+	light.SetDiffuseColor(0.8f, 0.8f, 0.8f, 1.0f);
+	light.SetSpecularColor(1.0f, 1.0f, 1.0f, 1.0f);
+	light.SetPosition(0.0f, 1.0f, 0.0f);
 
 	//int nFileSize = 0;
 	//// 加载图片的内容
@@ -341,6 +348,7 @@ void Draw()
 	// 清除背景颜色
 	glClearColor(0.1f, 0.4f, 0.6f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	light.Enable();
 	// 绘制天空盒
 	skybox.Draw();
 	// 绘制模型
