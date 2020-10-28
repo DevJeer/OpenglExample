@@ -10,7 +10,7 @@ SkyBox skybox;
 Model model;
 Ground ground;
 DirectionLight light(GL_LIGHT0);
-PointLight light1(GL_LIGHT1);
+PointLight light1(GL_LIGHT1), light2(GL_LIGHT2);
 void Init()
 {
 	// 设置当前投影矩阵的
@@ -40,6 +40,14 @@ void Init()
 	light1.SetPosition(0.0f, 0.0f, 0.0f);
 	light1.SetConstAttenuation(1.0f);
 	light1.SetLinearAttenuation(0.2f);
+
+	// 设置第二个点光源
+	light2.SetAmbientColor(0.1f, 0.1f, 0.1f, 1.0f);
+	light2.SetDiffuseColor(0.1f, 0.4f, 0.6f, 1.0f);
+	light2.SetSpecularColor(1.0f, 1.0f, 1.0f, 1.0f);
+	light2.SetPosition(0.0f, 0.0f, -10.0f);
+	light2.SetConstAttenuation(1.0f);
+	light2.SetLinearAttenuation(0.2f);
 
 	// 设置模型的材质
 	model.SetAmbientMaterial(0.1f, 0.1f, 0.1f, 1.0f);
@@ -367,7 +375,9 @@ void Draw()
 	// 清除背景颜色
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	light.Enable();
+	//light.Enable();
+	light1.Enable();
+	light2.Enable();
 	// 绘制天空盒
 	//skybox.Draw();
 	// 绘制模型

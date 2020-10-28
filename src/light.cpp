@@ -20,7 +20,7 @@ void Light::SetDiffuseColor(float r, float g, float b, float a)
 void Light::SetSpecularColor(float r, float g, float b, float a)
 {
 	float specularColor[] = { r, g, b, a };
-	glLightfv(mLightIdentifier, GL_DIFFUSE, specularColor);
+	glLightfv(mLightIdentifier, GL_SPECULAR, specularColor);
 }
 // ¿ªÆôµÆ¹â
 void Light::Enable()
