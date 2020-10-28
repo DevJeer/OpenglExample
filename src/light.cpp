@@ -42,3 +42,29 @@ void DirectionLight::SetPosition(float x, float y, float z)
 	float position[] = { x, y, z, 0.0f };
 	glLightfv(mLightIdentifier, GL_POSITION, position);
 }
+
+PointLight::PointLight(GLenum light)
+{
+	mLightIdentifier = light;
+}
+
+void PointLight::SetPosition(float x, float y, float z)
+{
+	float pos[] = { x, y, z, 1.0f };
+	glLightfv(mLightIdentifier, GL_POSITION, pos);
+}
+// 设置常数衰减系数
+void PointLight::SetConstAttenuation(float v)
+{
+	glLightf(mLightIdentifier, GL_CONSTANT_ATTENUATION, v);
+}
+// 设置线性衰减系数
+void PointLight::SetLinearAttenuation(float v)
+{
+	glLightf(mLightIdentifier, GL_LINEAR_ATTENUATION, v);
+}
+// 设置平方项衰减系数
+void PointLight::SetQuadricAttenuation(float v)
+{
+	glLightf(mLightIdentifier, GL_QUADRATIC_ATTENUATION, v);
+}
