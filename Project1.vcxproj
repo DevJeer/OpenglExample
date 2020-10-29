@@ -134,6 +134,7 @@
     <ClCompile Include="src\model.cpp" />
     <ClCompile Include="src\scene.cpp" />
     <ClCompile Include="src\skybox.cpp" />
+    <ClCompile Include="src\sprite.cpp" />
     <ClCompile Include="src\utils.cpp" />
     <ClCompile Include="src\Vector3f.cpp" />
   </ItemGroup>
@@ -145,6 +146,7 @@
     <ClInclude Include="src\model.h" />
     <ClInclude Include="src\scene.h" />
     <ClInclude Include="src\skybox.h" />
+    <ClInclude Include="src\sprite.h" />
     <ClInclude Include="src\utils.h" />
     <ClInclude Include="src\Vector3f.h" />
   </ItemGroup>

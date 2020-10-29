@@ -5,6 +5,7 @@
 #include "ground.h"
 #include "light.h"
 #include "camera.h"
+#include "sprite.h"
 
 GLuint texture;
 SkyBox skybox;
@@ -14,6 +15,7 @@ DirectionLight light(GL_LIGHT0);
 PointLight light1(GL_LIGHT1), light2(GL_LIGHT2);
 SpotLight light3(GL_LIGHT3);
 Camera camera;
+Sprite2D sprite;
 void Init()
 {
 	// 设置当前投影矩阵的
@@ -74,6 +76,10 @@ void Init()
 	// 设置camera的宽高
 	camera.mViewportWidth = 800.0f;
 	camera.mViewportHeight = 600.0f;
+
+	// 给2D精灵赋值
+	sprite.SetImage("Res/front.bmp");
+	sprite.SetRect(0.0f, 0.0f, 100.0f, 100.0f);
 
 	//int nFileSize = 0;
 	//// 加载图片的内容
@@ -412,8 +418,12 @@ void Draw()
 	model.Draw();
 	// 绘制地面
 	ground.Draw();
+
+
 	// 再绘制2D的东西
 	camera.SwitchTo2D();
+	// 绘制2D纹理
+	sprite.Draw();
 
 }
 
