@@ -10,7 +10,9 @@ Camera::Camera() :
 void Camera::Update(float deltaTime)
 {
 	float moveSpeed = 10.0f;
-	if (mbMoveLeft)
+#pragma region x y z坐标的实现方式
+
+	/*if (mbMoveLeft)
 	{
 		float delta = deltaTime * moveSpeed;
 		mPos.x = mPos.x - delta;
@@ -33,6 +35,39 @@ void Camera::Update(float deltaTime)
 		float delta = -deltaTime * moveSpeed;
 		mPos.z = mPos.z - delta;
 		mViewCenter.z = mViewCenter.z - delta;
+	}*/
+#pragma endregion
+
+	// 使用向量的方式实现
+	// 计算朝向前方的向量
+	Vector3f forwardDirection = mViewCenter - mPos;
+	forwardDirection.Normalize();
+	// 计算朝右的向量
+	Vector3f rightDirection = Cross(forwardDirection, mUp);
+	rightDirection.Normalize();
+	if (mbMoveLeft)
+	{
+		Vector3f delta = rightDirection * deltaTime * moveSpeed;
+		mPos = mPos - delta;
+		mViewCenter = mViewCenter - delta;
+	}
+	if (mbMoveRight)
+	{
+		Vector3f delta = rightDirection * deltaTime * moveSpeed;
+		mPos = mPos + delta;
+		mViewCenter = mViewCenter + delta;
+	}
+	if (mbMoveForward)
+	{
+		Vector3f delta = forwardDirection * deltaTime * moveSpeed;
+		mPos = mPos + delta;
+		mViewCenter = mViewCenter + delta;
+	}
+	if (mbMoveBack)
+	{
+		Vector3f delta = forwardDirection * deltaTime * moveSpeed;
+		mPos = mPos - delta;
+		mViewCenter = mViewCenter - delta;
 	}
 
 	glLoadIdentity();
