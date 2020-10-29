@@ -112,3 +112,21 @@ void Camera::RotateView(float angle, float x, float y, float z)
 	newDirection.z = tempZ * viewDirection;
 	mViewCenter = mPos + newDirection;
 }
+// 切换到3D模式
+void Camera::SwitchTo3D()
+{
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	gluPerspective(50.0f, (float)mViewportWidth / (float)mViewportHeight, 0.1f, 1000.0f);
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+}
+// 切换到2D模式
+void Camera::SwitchTo2D()
+{
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	gluOrtho2D(-mViewportWidth / 2, mViewportWidth / 2, -mViewportHeight / 2, mViewportHeight / 2);
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+}

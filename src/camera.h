@@ -9,6 +9,8 @@ public:
 
 	Vector3f mPos, mViewCenter, mUp;
 
+	int mViewportWidth, mViewportHeight;
+
 	void Update(float deltaTime);
 
 	void Pitch(float angle);
@@ -16,4 +18,8 @@ public:
 	void Yaw(float angle);
 
 	void RotateView(float angle, float x, float y, float z);
+
+	void SwitchTo3D();
+
+	void SwitchTo2D();
 };

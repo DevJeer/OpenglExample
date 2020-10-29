@@ -71,6 +71,10 @@ void Init()
 	ground.SetDiffuseMaterial(0.4f, 0.4f, 0.4f, 1.0f);
 	ground.SetSpecularMaterial(0.0f, 0.0f, 0.0f, 1.0f);
 
+	// 设置camera的宽高
+	camera.mViewportWidth = 800.0f;
+	camera.mViewportHeight = 600.0f;
+
 	//int nFileSize = 0;
 	//// 加载图片的内容
 	//unsigned char* bmpFileContent = LoadFileContent("Res/test.bmp", nFileSize);
@@ -387,6 +391,8 @@ void Draw()
 	// 清除背景颜色
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	// 先绘制3D的场景
+	camera.SwitchTo3D();
 	// 在绘制每一帧的时候，都先要设置摄像机的位置
 	float frameTime = GetFrameTime();
 	camera.Update(frameTime);
@@ -401,11 +407,13 @@ void Draw()
 	light3.Enable();
 	light3.Update(camera.mPos.x, camera.mPos.y, camera.mPos.z);
 	// 绘制天空盒
-	//skybox.Draw();
+	skybox.Draw();
 	// 绘制模型
-	//model.Draw();
+	model.Draw();
 	// 绘制地面
 	ground.Draw();
+	// 再绘制2D的东西
+	camera.SwitchTo2D();
 
 }
 
