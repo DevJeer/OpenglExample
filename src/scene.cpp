@@ -415,7 +415,7 @@ void Draw()
 	// 绘制天空盒
 	skybox.Draw();
 	// 绘制模型
-	model.Draw();
+	//model.Draw();
 	// 绘制地面
 	ground.Draw();
 
