@@ -27,8 +27,13 @@ void Sprite2D::SetRect(float x, float y, float width, float height)
 void Sprite2D::Draw()
 {
 	// PNG有Alpha通道的图片无法正常显示， 需要开启Alpha测试
-	glEnable(GL_ALPHA_TEST);
-	glAlphaFunc(GL_GREATER, 0.0f); // 使用它会有锯齿状的边框
+	//glEnable(GL_ALPHA_TEST);
+	//glAlphaFunc(GL_GREATER, 0.0f); // 使用它会有锯齿状的边框
+
+	// 使用颜色混合
+	glEnable(GL_BLEND);
+	// src 指的是我们的PNG图片，DST指的是我们的背景
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, mTexture);
@@ -48,4 +53,6 @@ void Sprite2D::Draw()
 	glTexCoord2f(0.0f, 1.0f);
 	glVertex3f(mVertexes[3].x, mVertexes[3].y, mVertexes[3].z);
 	glEnd();
+
+	glDisable(GL_BLEND);
 }
