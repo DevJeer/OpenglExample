@@ -78,7 +78,7 @@ void Init()
 	camera.mViewportHeight = 600.0f;
 
 	// ¸ø2D¾«Áé¸³Öµ
-	sprite.SetImage("Res/front.bmp");
+	sprite.SetImage("Res/head.png");
 	sprite.SetRect(0.0f, 0.0f, 100.0f, 100.0f);
 
 	//int nFileSize = 0;

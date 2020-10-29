@@ -3,7 +3,9 @@
 // 创建纹理
 void Sprite2D::SetImage(const char *imagePath)
 {
-	mTexture = CreateTexture2DFromBMP(imagePath);
+	//mTexture = CreateTexture2DFromBMP(imagePath);
+	// 加载PNG格式的图片
+	mTexture = CreateTexture2DFromPNG(imagePath);
 }
 // 设置纹理的大小
 void Sprite2D::SetRect(float x, float y, float width, float height)

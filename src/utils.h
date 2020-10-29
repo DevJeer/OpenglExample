@@ -17,3 +17,5 @@ GLuint CreateTexture2DFromBMP(const char *bmpPath);
 GLuint CreateDisplayList(std::function<void()> foo);
 
 float GetFrameTime();
+
+GLuint CreateTexture2DFromPNG(const char *imageFilePath, bool invertY = true);

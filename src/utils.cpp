@@ -1,5 +1,5 @@
 #include "utils.h"
-
+#include "../external/soil.h"
 // 解码BMP格式的文件
 unsigned char* DecodeBMP(unsigned char* bmpFileData, int& width, int& height)
 {
@@ -77,4 +77,23 @@ GLuint CreateDisplayList(std::function<void()> foo)
 	foo();
 	glEndList();
 	return displayList;
+}
+
+// 从PNG中加载资源
+GLuint CreateTexture2DFromPNG(const char *imageFilePath, bool invertY)
+{
+	int nFileSize = 0;
+	unsigned char *filecontent = LoadFileContent(imageFilePath, nFileSize);
+	if (filecontent == nullptr)
+		return 0;
+	// 设置这个标志位  可以限制读取图片的长宽位2的次幂的图片
+	unsigned int flags = SOIL_FLAG_POWER_OF_TWO;
+	// 是否反转Y轴，与具体的PNG算法有关
+	if (invertY)
+	{
+		flags |= SOIL_FLAG_INVERT_Y;
+	}
+	// 加载PNG资源
+	GLuint texture = SOIL_load_OGL_texture_from_memory(filecontent, nFileSize, 0, 0, flags);
+	return texture;
 }

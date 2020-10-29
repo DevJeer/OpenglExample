@@ -5,6 +5,7 @@
 #pragma comment(lib, "glu32.lib")
 // 获取windows系统上的一些函数
 #pragma comment(lib, "winmm.lib")
+#pragma comment(lib, "external/soil.lib")
 // 保存鼠标按下的位置
 POINT originalPos;
 // 是否在旋转摄像机
