@@ -3,6 +3,8 @@
 #include "utils.h"
 #pragma comment(lib, "opengl32.lib")
 #pragma comment(lib, "glu32.lib")
+// 保存鼠标按下的位置
+POINT originalPos;
 
 // 读取图片
 unsigned char* LoadFileContent(const char* path, int& filesize)
@@ -41,6 +43,14 @@ LRESULT CALLBACK GLWindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
 	switch (msg)
 	{
+	case WM_RBUTTONDOWN:	// 当鼠标右键按下的时候进入
+		GetCursorPos(&originalPos);	// 获取光标的位置
+		ShowCursor(false);	// 隐藏光标
+		return 0;
+	case WM_RBUTTONUP:		// 当鼠标右键抬起的时候进入
+		SetCursorPos(originalPos.x, originalPos.y);	// 设置光标的位置
+		ShowCursor(true);	// 显示光标
+		return 0;
 	case WM_KEYDOWN:  // 当鼠标按下的时候进入
 		OnKeyDown(wParam);	// wParam 包含了按键的信息  哪个键被按下了
 		return 0;
