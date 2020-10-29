@@ -413,7 +413,7 @@ void Draw()
 	light3.Enable();
 	light3.Update(camera.mPos.x, camera.mPos.y, camera.mPos.z);
 	// 绘制天空盒
-	skybox.Draw();
+	skybox.Draw(camera.mPos.x, camera.mPos.y, camera.mPos.z);
 	// 绘制模型
 	//model.Draw();
 	// 绘制地面

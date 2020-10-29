@@ -13,5 +13,5 @@ public:
 
 	void DrawCommand();
 
-	void Draw();
+	void Draw(float x, float y, float z);
 };

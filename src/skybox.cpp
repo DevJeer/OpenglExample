@@ -136,7 +136,10 @@ void SkyBox::DrawCommand()
 	glEnd();
 }
 
-void SkyBox::Draw()
+void SkyBox::Draw(float x, float y, float z)
 {
+	glPushMatrix();
+	glTranslatef(x, y, z);
 	glCallList(mFastDrawCall);
+	glPopMatrix();
 }
