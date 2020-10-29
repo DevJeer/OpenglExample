@@ -41,6 +41,12 @@ LRESULT CALLBACK GLWindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
 	switch (msg)
 	{
+	case WM_KEYDOWN:  // 当鼠标按下的时候进入
+		OnKeyDown(wParam);	// wParam 包含了按键的信息  哪个键被按下了
+		return 0;
+	case WM_KEYUP:    // 当鼠标抬起的时候进入
+		OnKeyUp(wParam);    // wParam 包含了按键的信息  哪个键抬起了
+		return 0;
 	case WM_CLOSE:
 		PostQuitMessage(0);
 		return 0;

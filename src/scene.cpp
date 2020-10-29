@@ -399,3 +399,14 @@ void Draw()
 	ground.Draw();
 
 }
+
+// 键盘键按下的事件
+void OnKeyDown(char code)
+{
+	
+}
+// 键盘键抬起的事件
+void OnKeyUp(char code)
+{
+	
+}
