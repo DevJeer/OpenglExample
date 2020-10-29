@@ -15,3 +15,5 @@ GLuint CreateTexture2DFromBMP(const char *bmpPath);
 
 // 创建显式列表
 GLuint CreateDisplayList(std::function<void()> foo);
+
+float GetFrameTime();

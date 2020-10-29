@@ -3,6 +3,8 @@
 #include "utils.h"
 #pragma comment(lib, "opengl32.lib")
 #pragma comment(lib, "glu32.lib")
+// 获取windows系统上的一些函数
+#pragma comment(lib, "winmm.lib")
 // 保存鼠标按下的位置
 POINT originalPos;
 // 是否在旋转摄像机
@@ -38,6 +40,18 @@ unsigned char* LoadFileContent(const char* path, int& filesize)
 		fclose(pFile);
 	}
 	return fileContent;
+}
+
+// 获取每帧的时间
+float GetFrameTime()
+{
+	static unsigned long lastTime = 0, timeSinceComputerStart = 0;
+	// 获取时间，单位是 ms  为unsigned long类型
+	timeSinceComputerStart = timeGetTime();
+	unsigned long frameTime = lastTime == 0 ? 0 : timeSinceComputerStart - lastTime;
+	lastTime = timeSinceComputerStart;
+	// 返回浮点数类型，并且单位是s
+	return float(frameTime) / 1000.0f;
 }
 
 // 监听用户的操作
