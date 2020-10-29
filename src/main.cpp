@@ -5,6 +5,8 @@
 #pragma comment(lib, "glu32.lib")
 // 保存鼠标按下的位置
 POINT originalPos;
+// 是否在旋转摄像机
+bool rotateView = false;
 
 // 读取图片
 unsigned char* LoadFileContent(const char* path, int& filesize)
@@ -46,10 +48,23 @@ LRESULT CALLBACK GLWindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 	case WM_RBUTTONDOWN:	// 当鼠标右键按下的时候进入
 		GetCursorPos(&originalPos);	// 获取光标的位置
 		ShowCursor(false);	// 隐藏光标
+		rotateView = true;
 		return 0;
 	case WM_RBUTTONUP:		// 当鼠标右键抬起的时候进入
 		SetCursorPos(originalPos.x, originalPos.y);	// 设置光标的位置
 		ShowCursor(true);	// 显示光标
+		rotateView = false;
+		return 0;
+	case WM_MOUSEMOVE:		// 当鼠标移动的时候进入
+		if (rotateView)		// 当移动摄像机的时候为 true
+		{
+			POINT currentPos;
+			GetCursorPos(&currentPos);
+			int deltaX = currentPos.x - originalPos.x;
+			int deltaY = currentPos.y - originalPos.y;
+			OnMouseMove(deltaX, deltaY);
+			SetCursorPos(originalPos.x, originalPos.y);
+		}
 		return 0;
 	case WM_KEYDOWN:  // 当鼠标按下的时候进入
 		OnKeyDown(wParam);	// wParam 包含了按键的信息  哪个键被按下了

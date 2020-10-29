@@ -8,3 +8,5 @@ void Draw();
 void OnKeyDown(char code);
 // 键盘抬起的事件
 void OnKeyUp(char code);
+
+void OnMouseMove(float deltaX, float deltaY);

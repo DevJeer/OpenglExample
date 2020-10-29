@@ -410,3 +410,8 @@ void OnKeyUp(char code)
 {
 	
 }
+// 鼠标移动时候的事件
+void OnMouseMove(float deltaX, float deltaY)
+{
+
+}
