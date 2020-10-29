@@ -450,5 +450,8 @@ void OnKeyUp(char code)
 // 鼠标移动时候的事件
 void OnMouseMove(float deltaX, float deltaY)
 {
-
+	float angleRotatedByUp = deltaX / 1000.0f;
+	float angleRotatedByRight = deltaY / 1000.0f;
+	camera.Yaw(-angleRotatedByUp);
+	camera.Pitch(-angleRotatedByRight);
 }

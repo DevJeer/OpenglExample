@@ -10,4 +10,8 @@ public:
 	Vector3f mPos, mViewCenter, mUp;
 
 	void Update(float deltaTime);
+
+	void Pitch(float angle);
+
+	void Yaw(float angle);
 };

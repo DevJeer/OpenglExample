@@ -75,3 +75,13 @@ void Camera::Update(float deltaTime)
 		mViewCenter.x, mViewCenter.y, mViewCenter.z,
 		mUp.x, mUp.y, mUp.z);
 }
+// 沿自身x轴旋转
+void Camera::Pitch(float angle)
+{
+
+}
+// 绕世界坐标系的y轴旋转
+void Camera::Yaw(float angle)
+{
+
+}
