@@ -50,8 +50,12 @@ PointLight::PointLight(GLenum light)
 
 void PointLight::SetPosition(float x, float y, float z)
 {
-	float pos[] = { x, y, z, 1.0f };
-	glLightfv(mLightIdentifier, GL_POSITION, pos);
+	/*float pos[] = { x, y, z, 1.0f };
+	glLightfv(mLightIdentifier, GL_POSITION, pos);*/
+	// 保存视口坐标  摄像机与光源之间的相对位置
+	mPosition[0] = x;
+	mPosition[1] = y;
+	mPosition[2] = z;
 }
 // 设置常数衰减系数
 void PointLight::SetConstAttenuation(float v)
@@ -68,6 +72,14 @@ void PointLight::SetQuadricAttenuation(float v)
 {
 	glLightf(mLightIdentifier, GL_QUADRATIC_ATTENUATION, v);
 }
+// 更新光源的位置
+void PointLight::Update(float x, float y, float z)
+{
+	// 得到摄像机与灯光的相对距离
+	float pos[] = { mPosition[0] - x, mPosition[1] - y, mPosition[2] - z, 1.0f };
+	glLightfv(mLightIdentifier, GL_POSITION, pos);
+}
+
 // 直接调用父类的构造函数
 SpotLight::SpotLight(GLenum light) : PointLight(light)
 {

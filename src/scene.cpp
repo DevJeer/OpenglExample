@@ -394,9 +394,12 @@ void Draw()
 	//light.Enable();
 	// 启用点光源
 	light1.Enable();
+	light1.Update(camera.mPos.x, camera.mPos.y, camera.mPos.z);
 	light2.Enable();
+	light2.Update(camera.mPos.x, camera.mPos.y, camera.mPos.z);
 	// 启用聚光灯
 	light3.Enable();
+	light3.Update(camera.mPos.x, camera.mPos.y, camera.mPos.z);
 	// 绘制天空盒
 	//skybox.Draw();
 	// 绘制模型
@@ -409,12 +412,40 @@ void Draw()
 // 键盘键按下的事件
 void OnKeyDown(char code)
 {
-	
+	switch (code)
+	{
+	case 'A':
+		camera.mbMoveLeft = true;
+		break;
+	case 'D':
+		camera.mbMoveRight = true;
+		break;
+	case 'W':
+		camera.mbMoveForward = true;
+		break;
+	case 'S':
+		camera.mbMoveBack = true;
+		break;
+	}
 }
 // 键盘键抬起的事件
 void OnKeyUp(char code)
 {
-	
+	switch (code)
+	{
+	case 'A':
+		camera.mbMoveLeft = false;
+		break;
+	case 'D':
+		camera.mbMoveRight = false;
+		break;
+	case 'W':
+		camera.mbMoveForward = false;
+		break;
+	case 'S':
+		camera.mbMoveBack = false;
+		break;
+	}
 }
 // 鼠标移动时候的事件
 void OnMouseMove(float deltaX, float deltaY)

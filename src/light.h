@@ -26,12 +26,15 @@ public:
 };
 
 class PointLight : public Light {
+	float mPosition[3];
 public:
 	PointLight(GLenum light);
 	void SetPosition(float x, float y, float z);
 	void SetConstAttenuation(float v);
 	void SetLinearAttenuation(float v);
 	void SetQuadricAttenuation(float v);
+
+	void Update(float x, float y, float z);
 };
 
 class SpotLight : public PointLight {

@@ -9,6 +9,32 @@ Camera::Camera() :
 
 void Camera::Update(float deltaTime)
 {
+	float moveSpeed = 10.0f;
+	if (mbMoveLeft)
+	{
+		float delta = deltaTime * moveSpeed;
+		mPos.x = mPos.x - delta;
+		mViewCenter.x = mViewCenter.x - delta;
+	}
+	if (mbMoveRight)
+	{
+		float delta = deltaTime * moveSpeed;
+		mPos.x = mPos.x + delta;
+		mViewCenter.x = mViewCenter.x + delta;
+	}
+	if (mbMoveForward)
+	{
+		float delta = -deltaTime * moveSpeed;
+		mPos.z = mPos.z + delta;
+		mViewCenter.z = mViewCenter.z + delta;
+	}
+	if (mbMoveBack)
+	{
+		float delta = -deltaTime * moveSpeed;
+		mPos.z = mPos.z - delta;
+		mViewCenter.z = mViewCenter.z - delta;
+	}
+
 	glLoadIdentity();
 	gluLookAt(mPos.x, mPos.y, mPos.z,
 		mViewCenter.x, mViewCenter.y, mViewCenter.z,
