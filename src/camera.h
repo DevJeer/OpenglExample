@@ -14,4 +14,6 @@ public:
 	void Pitch(float angle);
 
 	void Yaw(float angle);
+
+	void RotateView(float angle, float x, float y, float z);
 };
