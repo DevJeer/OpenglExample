@@ -45,9 +45,11 @@ unsigned char* LoadFileContent(const char* path, int& filesize)
 // 获取每帧的时间
 float GetFrameTime()
 {
+	// 定义为static 变量只存在一次
 	static unsigned long lastTime = 0, timeSinceComputerStart = 0;
 	// 获取时间，单位是 ms  为unsigned long类型
 	timeSinceComputerStart = timeGetTime();
+	// 如果是刚启动，就设为0， 第一次之后就获取每帧的时间
 	unsigned long frameTime = lastTime == 0 ? 0 : timeSinceComputerStart - lastTime;
 	lastTime = timeSinceComputerStart;
 	// 返回浮点数类型，并且单位是s

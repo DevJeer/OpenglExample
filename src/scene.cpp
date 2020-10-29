@@ -4,6 +4,7 @@
 #include "model.h"
 #include "ground.h"
 #include "light.h"
+#include "camera.h"
 
 GLuint texture;
 SkyBox skybox;
@@ -12,6 +13,7 @@ Ground ground;
 DirectionLight light(GL_LIGHT0);
 PointLight light1(GL_LIGHT1), light2(GL_LIGHT2);
 SpotLight light3(GL_LIGHT3);
+Camera camera;
 void Init()
 {
 	// 设置当前投影矩阵的
@@ -385,6 +387,10 @@ void Draw()
 	// 清除背景颜色
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	// 在绘制每一帧的时候，都先要设置摄像机的位置
+	float frameTime = GetFrameTime();
+	camera.Update(frameTime);
+
 	//light.Enable();
 	// 启用点光源
 	light1.Enable();

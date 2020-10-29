@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\camera.cpp" />
     <ClCompile Include="src\ground.cpp" />
     <ClCompile Include="src\light.cpp" />
     <ClCompile Include="src\main.cpp" />
@@ -134,8 +135,10 @@
     <ClCompile Include="src\scene.cpp" />
     <ClCompile Include="src\skybox.cpp" />
     <ClCompile Include="src\utils.cpp" />
+    <ClCompile Include="src\Vector3f.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\camera.h" />
     <ClInclude Include="src\ggl.h" />
     <ClInclude Include="src\ground.h" />
     <ClInclude Include="src\light.h" />
@@ -143,6 +146,7 @@
     <ClInclude Include="src\scene.h" />
     <ClInclude Include="src\skybox.h" />
     <ClInclude Include="src\utils.h" />
+    <ClInclude Include="src\Vector3f.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
