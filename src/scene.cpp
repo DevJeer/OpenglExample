@@ -90,7 +90,7 @@ void Init()
 	particleTexture = CreateProcedureTexture(128);
 	particle.mHalfSize = 50.0f;
 	particle.mTexture = particleTexture;
-
+	particle.Init(220, 150, 50, 255, 10.0f);
 	//int nFileSize = 0;
 	//// ¼ÓÔØÍ¼Æ¬µÄÄÚÈİ
 	//unsigned char* bmpFileContent = LoadFileContent("Res/test.bmp", nFileSize);

@@ -16,7 +16,7 @@ void Particle::Draw()
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, mTexture);
 	glDisable(GL_LIGHTING);
-	glColor4ub(255, 255, 255, 255);
+	glColor4ubv(mColor);
 	glBegin(GL_QUADS);
 	glTexCoord2f(0.0f, 0.0f);
 	glVertex3f(mPosition.x - mHalfSize, mPosition.y - mHalfSize, 0);
@@ -31,4 +31,14 @@ void Particle::Draw()
 	glVertex3f(mPosition.x - mHalfSize, mPosition.y + mHalfSize, 0);
 	glEnd();
 	glDisable(GL_BLEND);
+}
+// ³õÊ¼»¯Á£×Ó
+void Particle::Init(GLubyte r, GLubyte g, GLubyte b, GLubyte a, float time)
+{
+	mLivingTime = 0;
+	mLifeTime = time;
+	mColor[0] = r;
+	mColor[1] = g;
+	mColor[2] = b;
+	mColor[3] = a;
 }
