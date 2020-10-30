@@ -121,7 +121,7 @@ void EmitParticle(float delta)
 	}
 	else
 		return;
-	particle[particleCount - 1].mHalfSize = 5.0f;
+	particle[particleCount - 1].mHalfSize = 50.0f;
 	particle[particleCount - 1].mTexture = particleTexture;
 	particle[particleCount - 1].Init(220, 150, 50, 255, 10.0f);
 	particleCount++;
