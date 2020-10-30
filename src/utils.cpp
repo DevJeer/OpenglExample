@@ -120,7 +120,10 @@ GLuint CreateProcedureTexture(int size)
 			float deltaX = (float)x - centerX;
 			float deltaY = (float)y - centerY;
 			float distance = sqrtf(deltaX * deltaX + deltaY * deltaY);
-			float alpha = 1.0f - (distance / maxDistance);
+			// 使用线性渐变
+			//float alpha = 1.0f - (distance / maxDistance);
+			// 使用非线性渐变
+			float alpha = powf(1.0f - (distance / maxDistance), 8.0f);
 			alpha = alpha > 1.0f ? 1.0f : alpha;
 			// 转换成unsigned char类型才可以正常显示
 			imageData[currentPixelOffset + 3] = (unsigned char)(alpha * 255.0f);
