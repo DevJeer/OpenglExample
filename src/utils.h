@@ -17,5 +17,7 @@ GLuint CreateTexture2DFromBMP(const char *bmpPath);
 GLuint CreateDisplayList(std::function<void()> foo);
 
 float GetFrameTime();
-
+// 根据PNG图片创建纹理对象
 GLuint CreateTexture2DFromPNG(const char *imageFilePath, bool invertY = true);
+
+GLuint CreateProcedureTexture(int size);

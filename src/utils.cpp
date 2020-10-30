@@ -100,3 +100,23 @@ GLuint CreateTexture2DFromPNG(const char *imageFilePath, bool invertY)
 	GLuint texture = SOIL_load_OGL_texture_from_memory(filecontent, nFileSize, 0, 0, flags);
 	return texture;
 }
+// 创建程序纹理 （是由程序自己生成的）
+GLuint CreateProcedureTexture(int size)
+{
+	unsigned char *imageData = new unsigned char[size * size * 4];
+	for (int y = 0; y < size; ++y)
+	{
+		for (int x = 0; x < size; ++x)
+		{
+			int currentPixelOffset = (x + y * size) * 4;
+			imageData[currentPixelOffset] = 255;
+			imageData[currentPixelOffset + 1] = 255;
+			imageData[currentPixelOffset + 2] = 255;
+			imageData[currentPixelOffset + 3] = 255;
+		}
+	}
+	// 创建2D纹理的对象
+	GLuint texture = CreateTexture2D(imageData, size, size, GL_RGBA);
+	delete imageData;
+	return texture;
+}
