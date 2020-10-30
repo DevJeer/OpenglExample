@@ -88,7 +88,7 @@ void Init()
 
 	// ³õÊ¼»¯Á£×Ó
 	particleTexture = CreateProcedureTexture(128);
-	particle.mHalfSize = 5.0f;
+	particle.mHalfSize = 50.0f;
 	particle.mTexture = particleTexture;
 
 	//int nFileSize = 0;

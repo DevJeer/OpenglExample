@@ -104,6 +104,11 @@ GLuint CreateTexture2DFromPNG(const char *imageFilePath, bool invertY)
 GLuint CreateProcedureTexture(int size)
 {
 	unsigned char *imageData = new unsigned char[size * size * 4];
+	// 添加线性渐变的效果
+	float halfSize = (float)size / 2.0f;
+	float maxDistance = sqrtf(halfSize * halfSize + halfSize * halfSize);
+	float centerX = halfSize;
+	float centerY = halfSize;
 	for (int y = 0; y < size; ++y)
 	{
 		for (int x = 0; x < size; ++x)
@@ -112,7 +117,14 @@ GLuint CreateProcedureTexture(int size)
 			imageData[currentPixelOffset] = 255;
 			imageData[currentPixelOffset + 1] = 255;
 			imageData[currentPixelOffset + 2] = 255;
-			imageData[currentPixelOffset + 3] = 255;
+			float deltaX = (float)x - centerX;
+			float deltaY = (float)y - centerY;
+			float distance = sqrtf(deltaX * deltaX + deltaY * deltaY);
+			float alpha = 1.0f - (distance / maxDistance);
+			alpha = alpha > 1.0f ? 1.0f : alpha;
+			// 转换成unsigned char类型才可以正常显示
+			imageData[currentPixelOffset + 3] = (unsigned char)(alpha * 255.0f);
+			//imageData[currentPixelOffset + 3] = 255;
 		}
 	}
 	// 创建2D纹理的对象
