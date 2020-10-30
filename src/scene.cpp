@@ -6,6 +6,7 @@
 #include "light.h"
 #include "camera.h"
 #include "sprite.h"
+#include "particle.h"
 
 GLuint texture;
 SkyBox skybox;
@@ -16,6 +17,10 @@ PointLight light1(GL_LIGHT1), light2(GL_LIGHT2);
 SpotLight light3(GL_LIGHT3);
 Camera camera;
 Sprite2D sprite;
+// 粒子
+GLuint particleTexture;
+Particle particle;
+
 void Init()
 {
 	// 设置当前投影矩阵的
@@ -80,6 +85,11 @@ void Init()
 	// 给2D精灵赋值
 	sprite.SetImage("Res/head.png");
 	sprite.SetRect(0.0f, 0.0f, 100.0f, 100.0f);
+
+	// 初始化粒子
+	particleTexture = CreateProcedureTexture(128);
+	particle.mHalfSize = 5.0f;
+	particle.mTexture = particleTexture;
 
 	//int nFileSize = 0;
 	//// 加载图片的内容
@@ -424,6 +434,8 @@ void Draw()
 	camera.SwitchTo2D();
 	// 绘制2D纹理
 	sprite.Draw();
+	// 绘制例子
+	particle.Draw();
 
 }
 

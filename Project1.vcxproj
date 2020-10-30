@@ -132,6 +132,7 @@
     <ClCompile Include="src\light.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\model.cpp" />
+    <ClCompile Include="src\particle.cpp" />
     <ClCompile Include="src\scene.cpp" />
     <ClCompile Include="src\skybox.cpp" />
     <ClCompile Include="src\sprite.cpp" />
@@ -144,6 +145,7 @@
     <ClInclude Include="src\ground.h" />
     <ClInclude Include="src\light.h" />
     <ClInclude Include="src\model.h" />
+    <ClInclude Include="src\particle.h" />
     <ClInclude Include="src\scene.h" />
     <ClInclude Include="src\skybox.h" />
     <ClInclude Include="src\sprite.h" />
