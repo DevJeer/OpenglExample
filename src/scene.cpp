@@ -19,7 +19,7 @@ Camera camera;
 Sprite2D sprite;
 // 粒子
 GLuint particleTexture;
-Particle particle;
+Particle particle[1000];
 
 void Init()
 {
@@ -88,9 +88,9 @@ void Init()
 
 	// 初始化粒子
 	particleTexture = CreateProcedureTexture(128);
-	particle.mHalfSize = 50.0f;
-	particle.mTexture = particleTexture;
-	particle.Init(220, 150, 50, 255, 10.0f);
+	//particle.mHalfSize = 50.0f;
+	//particle.mTexture = particleTexture;
+	//particle.Init(220, 150, 50, 255, 15.0f);
 	//int nFileSize = 0;
 	//// 加载图片的内容
 	//unsigned char* bmpFileContent = LoadFileContent("Res/test.bmp", nFileSize);
@@ -103,6 +103,28 @@ void Init()
 	// 整合创建纹理的方法
 	//texture = CreateTexture2DFromBMP("Res/test.bmp");
 
+}
+// 发射粒子
+void EmitParticle(float delta)
+{
+	static float currentSleepTime = 0.0f;
+	static float nextParticleTime = 0.016f;
+	static int particleCount = 1;
+	if (particleCount == 1000)
+		return;
+	// 发射粒子
+	currentSleepTime += delta;
+	if (currentSleepTime >= nextParticleTime)
+	{
+		// 发射
+		currentSleepTime = 0.0f;
+	}
+	else
+		return;
+	particle[particleCount - 1].mHalfSize = 5.0f;
+	particle[particleCount - 1].mTexture = particleTexture;
+	particle[particleCount - 1].Init(220, 150, 50, 255, 10.0f);
+	particleCount++;
 }
 
 // 绘制物体平面
@@ -434,8 +456,21 @@ void Draw()
 	camera.SwitchTo2D();
 	// 绘制2D纹理
 	sprite.Draw();
-	// 绘制例子
-	particle.Draw();
+	// 在绘制粒子之前更新位置
+	//particle.Update(frameTime);
+	// 绘制粒子
+	//particle.Draw();
+	EmitParticle(frameTime);
+	for (int i = 0; i < 1000; ++i)
+	{
+		if (particle[i].mLifeTime != -1.0f)
+		{
+			particle[i].Update(frameTime);
+			particle[i].Draw();
+		}
+		else
+			return;
+	}
 
 }
 
