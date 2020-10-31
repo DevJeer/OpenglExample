@@ -23,6 +23,11 @@ Particle particle[1000];
 
 void Init()
 {
+	// 打印Opengl的信息
+	printf("OpenGL Version : %s\n", glGetString(GL_VERSION));
+	printf("Vendor Version : %s\n", glGetString(GL_VENDOR));
+	printf("Renderer : %s\n", glGetString(GL_RENDERER));
+
 	// 设置当前投影矩阵的
 	glMatrixMode(GL_PROJECTION);
 	gluPerspective(50.0f, 800.0f / 600.0f, 0.1f, 1000.0f);
