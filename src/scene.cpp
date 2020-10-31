@@ -23,6 +23,14 @@ Particle particle[1000];
 
 void Init()
 {
+	glEnable(GL_VERSION);
+	GLenum error = glGetError();
+	if (error != GL_NO_ERROR)
+	{
+		printf("error happened : 0x%x\n", error);
+	}
+
+
 	// 打印Opengl的信息
 	printf("OpenGL Version : %s\n", glGetString(GL_VERSION));
 	printf("Vendor Version : %s\n", glGetString(GL_VENDOR));
